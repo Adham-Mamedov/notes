@@ -1,6 +1,7 @@
 import express from 'express'
 import fs from 'fs'
 import path from 'path'
+import uniqueId from '../utils/uniqueId'
 
 const router = express.Router()
 const __dirname = path.resolve()
@@ -17,13 +18,16 @@ router.post('/', (req, res) => {
     const notes = JSON.parse(data)
     
     notes.push({
-      id: '_11212',
+      id: uniqueId(),
       title: req.body.title,
       description: req.body.description,
       archive: false
     })
 
-    res.render('createNote') //todo Show message
+    fs.writeFile(dbPath, JSON.stringify(notes), (err) => {
+      if(err) return res.sendStatus(500)
+      res.render('createNote', {message: 'Success! Note was added.'})
+    })
   })
 })
 
