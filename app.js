@@ -11,6 +11,9 @@ const app = express()
 const port = process.env.PORT ?? 3000
 const __dirname = path.resolve()
 
+app.use(express.json())
+app.use(express.urlencoded({extended: false}))
+
 app.set('view engine', 'pug')
 app.use('/static', express.static(__dirname + '/public'))
 
