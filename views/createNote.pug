@@ -1,7 +1,11 @@
 extends components/layout
+block head 
+  script(src="/static/js/index.js" defer) 
 
 block main
   .card.center 
+    if message
+      .alert(class=`${message.type}`)= message.text
     h2 Create form
     form(action="/create-note" method="POST")
       .form-control 

@@ -35,6 +35,9 @@ a {
     font-weight: 500;
     text-decoration: none;
 }
+a.active {
+    border-bottom: 3px solid #3eaf7c;
+}
 
 h1,
 h2,
@@ -258,6 +261,7 @@ form {
     margin: 0;
     padding: 0;
     list-style: none;
+    width: 60%;
 }
 
 .list-item {
@@ -269,10 +273,13 @@ form {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 1rem;
 }
 
 .list-item:hover {
     background: #eee;
+    cursor: pointer;
 }
 
 .alert {

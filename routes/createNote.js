@@ -25,10 +25,16 @@ router.post('/', (req, res) => {
     })
 
     fs.writeFile(dbPath, JSON.stringify(notes), (err) => {
-      if(err) return res.sendStatus(500)
-      res.render('index', {message: 'Success! Note was added.'})
+      if(err) return res.sendStatus(500).render('createNote', {message: {
+        text: 'Error! Something went wrong.',
+        type: 'danger'
+      }})
     })
   })
+  res.render('createNote', {message: {
+    text: 'Success! Note was created.',
+    type: 'primary'
+  }})
 })
 
 
