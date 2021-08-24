@@ -1,3 +1,8 @@
 extends components/layout
 
 block main
+  .container.card.center 
+    h1= note.title
+    p Description: #{note.description} 
+    p 
+      strong Status: #{note.archive ? 'Archived' : 'Active'}

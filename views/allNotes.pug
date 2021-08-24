@@ -1,12 +1,15 @@
 extends components/layout
+block head 
+  script(src="/static/js/index.js" defer) 
 
 block main
   .card.center 
     h1= title
-    each note in notes
-      ul.list 
+    ul.list
+      each note in notes 
         li.list-item 
-          strong= note.title
+          a(href=`/note/${note.id}`)= note.title
           div
-            button.btn.warning(data-id=`${note.id}` data-type='archive') Archive 
+            if !note.archive
+              button.btn.warning(data-id=`${note.id}` data-type='archive') Archive 
             button.btn.danger(data-id=`${note.id}` data-type='delete') Delete 

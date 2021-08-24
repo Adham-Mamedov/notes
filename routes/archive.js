@@ -17,12 +17,13 @@ router.get('/', (req, res) => {
   })
 })
 
-router.delete('/delete/:id', (req, res) => {
+router.post('/add/:id', (req, res) => {
   fs.readFile(dbPath, (err, data) => {
     if(err) return res.sendStatus(500)
     let notes = JSON.parse(data)
     const id = req.params.id
-    notes = notes.filter(el => el.id !== id)
+    const index = notes.findIndex(note => note.id === id)
+    notes[index].archive = true
 
     fs.writeFile(dbPath, JSON.stringify(notes), (err) => {
       if(err) return res.sendStatus(500)
