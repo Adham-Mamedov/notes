@@ -22,13 +22,21 @@ router.delete('/delete/:id', (req, res) => {
     if(err) return res.sendStatus(500)
     let notes = JSON.parse(data)
     const id = req.params.id
+    const note = notes.find(el => el.id === id)
     notes = notes.filter(el => el.id !== id)
+
+    if(note.file !== 'default.jpg') {
+      fs.unlink(path.resolve(__dirname, `public/images/${note.file}`), (err) => {
+        if(err) return res.sendStatus(500)
+      })
+    }
+    
 
     fs.writeFile(dbPath, JSON.stringify(notes), (err) => {
       if(err) return res.sendStatus(500)
       notes = notes.filter(el => !el.archive)
       res.render('allNotes', {notes: notes, title: 'All notes:'})
-    })    
+    })  
   })
 })
 

@@ -7,11 +7,14 @@ block main
     if message
       .alert(class=`${message.type}`)= message.text
     h2 Create form
-    form(action="/create-note" method="POST")
+    form(action="/create-note" method="POST" enctype="multipart/form-data")
       .form-control 
         label(for="title") Title
         input(type="text" id="title" name="title")
       .form-control 
         label(for="text") Description
         textarea#text(name="description", cols="30", rows="5")
+      .form-control 
+        label(for="file") File
+        input(type="file" id="file" name="file")
       button.btn.primary(type="submit") Create note

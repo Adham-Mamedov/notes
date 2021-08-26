@@ -3,6 +3,7 @@ extends components/layout
 block main
   .container.card.center 
     h1= note.title
+    img(src=`/static/images/${note.file}`, alt="")
     p Description: #{note.description} 
     p 
       strong Status: #{note.archive ? 'Archived' : 'Active'}

@@ -17,6 +17,7 @@ app.use(express.urlencoded({extended: false}))
 app.set('view engine', 'pug')
 app.use('/static', express.static(__dirname + '/public'))
 
+// Routes handlers
 app.use('/', homeRouter)
 app.use('/notes', notesRouter)
 app.use('/archive', archiveRouter)
